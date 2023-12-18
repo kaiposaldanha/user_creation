@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from . forms import CreateUserForm, LoginForm
 import os
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -51,6 +52,6 @@ def user_logout(request):
     return redirect("index")
     
 
-
+@login_required(login_url="login")
 def dashboard(request):
     return render(request, 'elevate/dashboard.html')
